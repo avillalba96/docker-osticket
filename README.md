@@ -25,50 +25,17 @@ PHP [mail](http://php.net/manual/en/function.mail.php) function is configured to
 
 # Quick Start
 
-Ensure you have a MySQL 5 container running that osTicket can use to store its data.
-
 ```bash
-docker run -d \
-    -e MYSQL_ROOT_PASSWORD=secret \
-    -e MYSQL_USER=osticket \
-    -e MYSQL_PASSWORD=secret \
-    -e MYSQL_DATABASE=osticket \
-    --name osticket_mysql\
-    mysql:5
-```
-
-Now run this image and link the MySQL container.
-
-```bash
-docker run -d --name osticket --link osticket_mysql:mysql -p 8080:80 devinsolutions/osticket
+cp .env.example .env
+docker-compose -f init.yml run --rm osticket-app
+docker-compose --compatibility up -d
 ```
 
 Wait for the installation to complete then browse to your osTicket staff control panel at
-`http://localhost:8080/scp/`. Login with default admin user & password:
+`http://localhost:5335/scp/`. Login with default admin user & password:
 
 * username: **ostadmin**
-* password: **Admin1**
-
-Now configure as required. If you are intending on using this image in production, please make sure
-you change the passwords above and read the rest of this documentation!
-
-Note (1): If you want to change the environmental database variables on the osTicket image to run,
-you can do it as follows.
-
-```bash
-docker run -d \
-    -e MYSQL_ROOT_PASSWORD=new_root_password \
-    -e MYSQL_USER=new_root_user \
-    -e MYSQL_PASSWORD=new_secret \
-    -e MYSQL_DATABASE=osticket \
-    --link osticket_mysql:mysql \
-     --name osticket\
-     -p 8080:80 \
-     devinsolutions/osticket
-```
-
-Note (2): osTicket automatically redirects `http://localhost:8080/scp` to `http://localhost/scp/`.
-Either serve this on port 80 or don't omit the trailing slash after `scp/`!
+* password: **Ad!in1**
 
 # MySQL connection
 
@@ -205,7 +172,7 @@ installation. Defaults to 'helpdesk@example.com'
 
 The full URL of the osTicket installation that will be set in the DB during installation.
 This should be set to match the public facing URL of your osTicket site.
-For example: `https://help.example.com/osticket`. Defaults to `http://localhost:8080/`.
+For example: `https://help.example.com/osticket`. Defaults to `http://localhost:5335/`.
 
 This has no effect if the database has already been installed. In this case, you should change the
 Helpdesk URL in *System Settings and Preferences* in the admin control panel.

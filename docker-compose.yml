@@ -23,6 +23,8 @@ services:
     container_name: osticket-app
     hostname: osticket-app
     restart: unless-stopped
+    volumes:
+      - ./osticket/data/plugins:/var/www/html/include/plugins
     deploy:
       resources:
         limits:

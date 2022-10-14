@@ -1,0 +1,11 @@
+version: '3.4'
+services:
+  osticket-app:
+    image: devinsolutions/osticket:1.16.3
+    container_name: osticket-app
+    hostname: osticket-app
+    env_file: .env
+    entrypoint: /bin/sh
+    command: -c "cp -r /var/www/html/include/plugins/ /var/www/html/include/plugins_copy/"
+    volumes:
+      - ./osticket/data:/var/www/html/include/plugins_copy
