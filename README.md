@@ -215,6 +215,33 @@ cases.
 Please feel free to open an issue if you have any changes you would like to see. All pull requests
 are also appreciated!
 
+
+# Cleanup osTicket tables when a ticket is deleted
+
+```bash
+# delete orphaned threads
+DELETE FROM ost_thread
+WHERE object_type = 'T' AND object_id NOT IN (SELECT ticket_id FROM ost_ticket);
+ 
+# delete orphaned thread collaborators
+DELETE FROM ost_thread_collaborator
+WHERE thread_id NOT IN (SELECT id FROM ost_thread);
+ 
+# delete orphaned thread entries and emails
+DELETE FROM ost_thread_entry
+WHERE thread_id NOT IN (SELECT id FROM ost_thread);
+DELETE FROM ost_thread_entry_email
+WHERE thread_entry_id NOT IN (SELECT id FROM ost_thread_entry);
+ 
+# delete orphaned thread events
+DELETE FROM ost_thread_event
+WHERE thread_id NOT IN (SELECT id FROM ost_thread);
+ 
+# delete orphaned thread referrals
+DELETE FROM ost_thread_referral
+WHERE thread_id NOT IN (SELECT id FROM ost_thread);
+```
+
 # License
 
 This image and source code is made available under the MIT licence. See the LICENSE file for
