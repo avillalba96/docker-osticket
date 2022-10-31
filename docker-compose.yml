@@ -25,6 +25,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./osticket/data/plugins:/var/www/html/include/plugins
+#      - ./osticket/data/scp.css:/var/www/html/scp/css/scp.css
     deploy:
       resources:
         limits:
