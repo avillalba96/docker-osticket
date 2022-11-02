@@ -3139,8 +3139,8 @@ tr i.help-tip.warning {
     display: inline-block;
     max-width: 100%;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /*overflow: hidden;
+    text-overflow: ellipsis;*/
     vertical-align: bottom;
 }
 .truncate.bleed {
