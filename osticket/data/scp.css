@@ -3773,7 +3773,3 @@ img.avatar + img.avatar {
     height: auto;
     max-height: 400px !important;
 }
-.redactor-styles {
-    margin: auto !important;
-    max-width: 100% !important;
-}

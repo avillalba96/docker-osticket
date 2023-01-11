@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   osticket-app:
-    image: devinsolutions/osticket:1.16.3
+    image: devinsolutions/osticket:1.17.2
     container_name: osticket-app
     hostname: osticket-app
     env_file: .env
