@@ -16,14 +16,16 @@ services:
     command: ['mysqld', '--default-authentication-plugin=mysql_native_password', '--character-set-server=utf8', '--collation-server=utf8_unicode_ci']
     volumes:
       - ./osticket/db:/var/lib/mysql
-    networks:
-      - services
+#    networks:
+#      - services
 
   osticket-app:
     image: devinsolutions/osticket:1.17.2
     container_name: osticket-app
     hostname: osticket-app
     restart: unless-stopped
+    ports:
+      - 5335:80
     deploy:
       resources:
         limits:
@@ -35,13 +37,12 @@ services:
     depends_on:
       - osticket-db
     env_file: .env
-    networks:
-      - services
-      - nginx-proxy
+#    networks:
+#      - services
+#      - nginx-proxy
 
-networks:
-  services:
-    external: true
-  nginx-proxy:
-    external:
-      name: nginx-proxy
+#networks:
+#  services:
+#    external: true
+#  nginx-proxy:
+#    external: true
